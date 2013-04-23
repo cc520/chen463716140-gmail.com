@@ -1,0 +1,6 @@
+﻿locale\en-US\clock.xul  
+<!ENTITY helloWorld.clock "Clock">  
+<!ENTITY helloWorld.currentTime "Current Time">  
+locale\fr-FR\clock.xul  
+<!ENTITY helloWorld.clock "Horloge">  
+<!ENTITY helloWorld.currentTime "Heure courante">  

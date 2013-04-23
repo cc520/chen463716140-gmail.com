@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+
+<overlay id="aiosOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+    <hbox id="browser">
+        
+        <!-- fuer CSS benoetigt -->
+        <observes element="aios-toolbar" attribute="posMode" />
+
+	<!-- Sidebar-Switch -->
+        <toolbox id="aios-toggle-toolbox" insertafter="browser-border-start" class="chromeclass-toolbar"
+            persist="hidden fsToolbar fsToolbarMode fsToolbarIconsize fsSidebar fsSwitch">
+
+            <!-- Fenstermodus fuer schmalen Umschalter ueberwachen (maximized, normal, minimized) -->
+            <observes element="main-window" attribute="sizemode" onbroadcast="aios_checkThinSwitch();" />
+
+            <toolbar id="aios-toggle-toolbar" class="chromeclass-toolbar" flex="1"
+                style="min-width: 6px; max-width: 6px;" persist="style" fullscreentoolbar="true">
+
+        	<!-- ueber tooltip oder tooltiptext wird in aios_setTargets() [_lib.js] entschieden -->
+                <grippy flex="1" id="aios-toggle-button" tooltip="switch-tooltip" tooltiptext=""
+                    onclick="aios_controlSwitch(event, this);"
+                    onmouseover="aios_autoShowHide('switch'); event.stopPropagation();"
+                    ondragenter="aios_toggleSidebar('switch', true); event.stopPropagation();" />
+
+            </toolbar>
+
+            <toolbarset />
+
+        </toolbox>
+
+	<!-- TOOLBOX RECHTS NEBEN DER SIDEBAR -->
+        <toolbox id="aios-toolbox-right" insertbefore="sidebar-splitter" defaultmode="icons" class="chromeclass-toolbar" vertical="true" palette="BrowserToolbarPalette">
+
+            <observes element="aios-toolbar" attribute="mode" />
+            <observes element="aios-toolbar" attribute="defaultmode" />
+            <observes element="aios-toolbar" attribute="iconsize" />
+            
+            <!--
+                => die Toolbox darf beim Start nicht 'hidden sein', weil sonst die Toolbar nicht befuellt wird
+                => die Toolbox darf nicht 'collapsed' sein, weil sonst die Sidebar nicht skalierbar ist
+            -->
+
+            <toolbarset />
+        </toolbox>
+        <vbox id="sidebar-box" checked="true">
+        
+        </vbox>
+
+    </hbox>
+
+
+    <toolbox id="navigator-toolbox" palette="BrowserToolbarPalette" />
+
+</overlay>

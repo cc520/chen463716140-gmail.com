@@ -1,0 +1,12 @@
+﻿/* 搜索 */
+#search-box{
+    border-bottom: 1px solid threedshadow;
+    border-top: 1px solid threedhighlight;
+}
+#search-box button{min-width:auto;width:50px;}
+/* 树的样式 */
+.v_myTree treechildren::-moz-tree-row(selected) { background-color: #FFFFAA; }
+/*
+.v_myTree treechildren::-moz-tree-row { background:url('./img/treenote.png'); }
+*/
+.v_myTree treechildren::-moz-tree-cell-text(selected) { color: #000000; }

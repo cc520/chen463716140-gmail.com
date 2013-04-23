@@ -1,0 +1,18 @@
+content V+ content/
+
+locale  V+ en-US locale/en-US
+locale  V+ fr-FR locale/fr-FR
+skin V+ classic/1.0 skin/
+
+overlay         chrome://browser/content/browser.xul        chrome://V+/content/overlay.xul
+style           chrome://browser/content/browser.xul        chrome://V+/skin/overlay.css
+style           chrome://browser/content/browser.xul        chrome://V+/skin/reset.css
+
+overlay         chrome://browser/content/browser.xul        chrome://V+/content/top.xul
+style           chrome://browser/content/browser.xul        chrome://V+/skin/main.css
+
+style           chrome://V+/content/htmlMark.xul       chrome://V+/skin/htmlMark.css
+style           chrome://V+/content/webMark.xul        chrome://V+/skin/htmlMark.css
+style           chrome://V+/content/wait.xul           chrome://V+/skin/overlay.css 
+style           chrome://V+/content/config.xul         chrome://V+/skin/config.css
+

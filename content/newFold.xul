@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>  
+<?xml-stylesheet href="chrome://global/skin/"?>  
+<!DOCTYPE dialog SYSTEM "chrome://V+/locale/clock.dtd">
+<dialog id="clockDialog" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" title="新建文件夹"  
+buttons="accept"> 
+<hbox align="center">  
+<label value="文件名:" /> 
+<textbox id="v_fileName" />  
+</hbox>  
+</dialog>  

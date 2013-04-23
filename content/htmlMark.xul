@@ -1,0 +1,75 @@
+﻿<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<page id="v_htmlMark" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+    <popupset>
+        <menupopup id="v_placesContext"> 
+            <menuitem label="打开" command="v_placeCmd:open"/>
+            <menuseparator/>
+            <menuitem label="新建文件夹" hideifnoinsertionpoint="true" command="v_placeCmd:newFold"/>
+            <menuseparator/>
+            <!--<menuitem label="剪切" command="v_placeCmd:cut"/>-->
+            <menuitem label="复制链接" command="v_placeCmd:copylink"/>
+            <menuitem label="删除" command="v_placeCmd:delete"/>
+            <menuseparator/>
+            <menuitem label="属性" command="v_placeCmd:info"/>
+        </menupopup>
+    </popupset>
+    <commandset id="v_placesCommnend">
+       <command id="v_placeCmd:info" oncommand="alert('sss')"/>
+       <command id="v_placeCmd:open" oncommand="alert('sss')"/>
+       <command id="v_placeCmd:copylink" oncommand="alert('sss')"/>
+       <command id="v_placeCmd:newFold" oncommand="window.openDialog('chrome://V+/content/newFold.xul','新建文件夹','chrome,centerscreen,modal');"/>
+       <command id="v_placeCmd:delete" oncommand="alert('sss')"/>
+       <command id="v_placeCmd:cut" oncommand="alert('sss')"/>
+    </commandset>
+<hbox id="search-box">
+            <menulist editable="false">
+              <menupopup>
+                <menuitem label="标题"/>
+                <menuitem label="时间"/>
+              </menupopup>
+            </menulist>
+            <textbox id="find-text" flex="1"/>
+            <button id="find-button" label="搜索"/>
+        </hbox> 
+        <hbox>
+<tree id="v_htmlMark" flex="1" hidecolumnpicker="false" seltype="single" class="v_myTree" rows="30" hidehscroll="true" context="v_placesContext">
+  <treecols id="myTree2-treeCols">
+    <treecol id="myTree2-treeCol0" primary="true" flex="2" label="标题"
+             persist="width" ordinal="1"/>
+    <splitter class="tree-splitter" ordinal="2"/>
+    <treecol id="myTree2-treeCol1" flex="1" label="地址"
+             persist="width" ordinal="3" hidden="true"/>
+  </treecols>
+  <treechildren>
+    <!--<treeitem>-->
+      <!--<treerow link="http://www.baidu.com" onclick="alert('click')">-->
+        <!--<treecell label="百度URL"/>-->
+        <!--<treecell label="2011-12-12"/>-->
+      <!--</treerow>-->
+    <!--</treeitem>-->
+    <!--[> Make sure to set container="true" <]-->
+    <!--<treeitem container="true" open="false">-->
+      <!--<treerow>-->
+        <!--<treecell label="游戏"/>-->
+        <!--<treecell label="2011-12-3"/>-->
+      <!--</treerow>-->
+      <!--<treechildren>-->
+        <!--<treeitem>-->
+            <!--<treerow link="http://www.tgbus.com">-->
+              <!--<treecell label="游民星空" />-->
+              <!--<treecell label="2012-4-3"/>-->
+          <!--</treerow>-->
+        <!--</treeitem>-->
+      <!--</treechildren>-->
+    <!--</treeitem>-->
+  </treechildren>
+</tree>
+</hbox>
+    <script src="./jquery-1.8.2.js" type="application/x-javascript"/>
+    <script type="application/x-javascript" src="./tree.js"/>
+    <script type="application/x-javascript" src="./tree_html_mark.js"/>
+    <script type="application/x-javascript" src="./util/module.js"/>
+    <script type="application/x-javascript" src="./util/io.js"/>
+    <script type="application/x-javascript" src="./util/json.js"/>
+</page>

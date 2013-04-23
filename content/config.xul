@@ -1,0 +1,49 @@
+﻿<?xml version="1.0"?>  
+<?xml-stylesheet href="chrome://global/skin/"?>  
+<page id="v_config" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+    <vbox flex="1">
+        <tabbox id="v_config_list" selectedIndex="0" flex="1">
+          <tabs class="v_config_tab">
+            <tab label="配置一"/>
+            <tab label="配置二"/>
+            <tab label="配置三"/>
+          </tabs>
+          <tabpanels id="v_config_panel" flex="1">
+              <tabpanel flex="1">
+                  <vbox flex="1">
+                      <groupbox flex="1">
+                        <caption label="选择首选项"/>
+                        <radiogroup>
+                          <radio id="r_c_d" label="点击直接删除" selected="true" value="1"/>
+                          <radio id="r_c_e" label="点击编辑" value="2"/>
+                          <radio id="r_c_o" label="其他" value="3"/>
+                        </radiogroup>
+                        <checkbox label="Enable"/>
+                      </groupbox>
+                      <groupbox flex="1" maxheight="250">
+                        <caption label="浏览"/>
+                        <radiogroup>
+                          <radio label="待定" selected="true" value="1"/>
+                          <radio label="待定" value="2"/>
+                          <radio label="其他" value="3"/>
+                        </radiogroup>
+                        <checkbox label="Enable"/>
+                      </groupbox>
+                      <groupbox flex="1" maxheight="250">
+                        <caption label="摘录"/>
+                        <radiogroup>
+                          <radio label="待定" selected="true" value="1"/>
+                          <radio label="待定" value="2"/>
+                          <radio label="其他" value="3"/>
+                        </radiogroup>
+                        <checkbox label="Enable"/>
+                      </groupbox>
+                      <space flex="3"/> 
+                  </vbox>
+              </tabpanel>
+            <tabpanel><!-- tabpanel First elements go here --></tabpanel>
+            <tabpanel><!-- tabpanel Second elements go here --></tabpanel>
+          </tabpanels>
+        </tabbox>
+    </vbox>
+</page>

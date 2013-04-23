@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin" type="text/css"?>
+<overlay id="VmainOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns:html="http://www.w3.org/1999/xhtml">
+    <!--右键-->
+    <script src="./jquery-1.8.2.js" type="application/x-javascript"/>
+    <script src="./tabs.js" type="application/x-javascript"/>
+    <script src="./switch.js" type="application/x-javascript"/>
+    <command id="v_sidebar_switch" oncommand="showSwitch()"/>
+ <hbox id="browser">
+    <splitter id="v_split" collapse="after" resizebefore="grow" resizeafter="closest" state="collapsed" insertafter="browser-border-start">
+     <grippy command="v_sidebar_switch"/>
+    </splitter>
+    <vbox id="v_sidebar" insertafter="v_split" collapsed="true" minwidth="250" maxwidth="800">
+        <sidebarheader id="sidebar_header" align="center" height="30">
+            <toolbar mode="icons" id="v_sidebar_title" flex="1">
+                <toolbarbutton flex="1">
+                    <label value="摘录" flex="1" crop="right" id="v_title_label"/>
+                </toolbarbutton>
+                <toolbarbutton id="v_sidebarclose-button" label="关闭侧栏" tooltiptext="关闭侧栏" oncommand="showSwitch()" class="tabs-closebutton" removable="true"></toolbarbutton>
+            </toolbar>
+        </sidebarheader>
+        <html:ul class="v_menu">
+            <html:li class="p1 icon sel" link="htmlMark" title="摘录">项目1</html:li>
+            <html:li class="p3 icon" link="webMark" title="网页编辑">项目2</html:li>
+            <html:li class="p4 icon" link="wait" title="期待中...">项目3</html:li>
+            <html:li class="p2 icon" link="config" title="配置">项目3</html:li>
+        </html:ul> 
+        <browser flex="1" src="chrome://V+/content/htmlMark.xul" id="v_sidebrowser">
+        </browser>
+    </vbox>
+    <splitter id="v_split_right"  insertbefore="sidebar-splitter" hidden="true"/>
+  </hbox>
+</overlay>

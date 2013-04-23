@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>  
+<page xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">  
+
+<vbox/>
+<splitter/>
+<vbox height="500" minheight="200">
+  <vbox height="100"/>
+</vbox>
+
+
+</page>

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<dialog id="donothing" title="Dialog example"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  buttons="accept,cancel"
+  buttonlabelcancel="Cancel"
+  buttonlabelaccept="Save"
+  ondialogaccept="return doOK();"
+  ondialogcancel="return doCancel();">
+  <!--<dialogheader title="网页编辑" description=""/>-->
+  <script type="application/x-javascript">
+      function doOK(){
+      var name = document.getElementById('v_save_name').value,
+          is_default = document.getElementById('v_is_default').checked;
+         Collect_Manage = window.arguments[0];
+          if(!name.length)
+            alert('名称不能为空！');
+          Collect_Manage.save(name,is_default);
+          return true;
+      }
+      function doCancel(){
+        return;
+      }
+  </script>
+    <label value="名称:"/>
+    <textbox id="v_save_name" value="cc"/>
+    <checkbox label="是否设置为此页面为默认页面" id="v_is_default" checked="true"/>
+</dialog>
+

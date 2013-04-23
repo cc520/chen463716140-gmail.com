@@ -1,0 +1,27 @@
+﻿#working-list{width:15em;margin:0;}
+/* 菜单栏 */
+.v_menu{background:#fff;border:1px solid #808080;}
+.v_menu li{text-indent:-9999px;float: left;}
+.v_menu li:hover{background-color:#e0e8f6;}
+.v_menu li.sel{background-color:#c1d2ee;}
+.icon{width:35px;height:35px;background-repeat:no-repeat;background-position:center;background-color:#fff;margin:1px;margin-right:0;background-size:30px;}
+.p1{background-image:url('./img/kaddressbook.png')}
+.p2{background-image:url('./img/exec.png')}
+.p3{background-image:url('./img/filetypes.png')}
+.p4{background-image:url('./img/knetconfig.png')}
+/* 搜索 */
+#search-box{
+    border-bottom: 1px solid threedshadow;
+    border-top: 1px solid threedhighlight;
+}
+#search-box button{min-width:auto;width:50px;}
+/* 树的样式 */
+.v_myTree treechildren::-moz-tree-row(selected) { background-color: #FFFFAA; }
+/*.v_myTree treechildren::-moz-tree-row { background:url('./img/treenote.png'); }*/
+.v_myTree treechildren::-moz-tree-cell-text(selected) { color: #000000; }
+
+/* 侧边栏切换 */
+#v_sidebar_title label {padding-bottom:2px;padding-top:2px}
+#v_sidebar_title toolbarbutton{border:0;}
+#v_sidebar_title,#sidebar_header{border:0;}
+

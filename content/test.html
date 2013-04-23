@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="./jquery-1.8.2.js" type="text/javascript"></script>
+  <script src="./util/json.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    function getFF(e){
+      alert(e.target.id);
+    }
+    function createElm(){
+       var ele = document.createElement('MyExtensionElm');
+       ele.setAttribute("name","seasun");
+       ele.setAttribute('age',24);
+       document.documentElement.appendChild(ele);
+       var evt = document.createEvent('Events');
+       evt.initEvent("MyExtensionEvent",true,false);
+       ele.dispatchEvent(evt);
+    }
+  </script>
+</head>
+<body>
+    <div class="v_conatiner">
+        <div class="v_icons">
+            <ul>
+              <li class="v_sel">选择</li>
+              <li class="v_cancel">取消</li>
+            </ul> 
+        </div> 
+    </div>
+</body>
+</html>

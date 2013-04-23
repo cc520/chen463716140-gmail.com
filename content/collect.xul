@@ -1,0 +1,11 @@
+﻿<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<window id="findfile-window" title="查找文件" orient="horizontal" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns:html="http://www.w3.org/1999/xhtml">
+<html:div id="v_menu">
+   <html:ul>
+        <html:li class="p1">项目1</html:li>
+        <html:li class="p2">项目2</html:li>
+        <html:li class="p3">项目3</html:li>
+   </html:ul> 
+</html:div>
+</window>

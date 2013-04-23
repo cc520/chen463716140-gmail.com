@@ -1,0 +1,9 @@
+﻿#helloWorldButton {  
+list-style-image:url(chrome://V+/skin/icon.png);  
+}  
+  
+toolbar[iconsize="small"] #helloWorldButton {  
+list-style-image:url(chrome://V+/skin/icon-small.png);  
+}  
+
+

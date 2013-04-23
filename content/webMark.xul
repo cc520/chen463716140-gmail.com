@@ -1,0 +1,54 @@
+﻿<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<page id="v_htmlMark" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<hbox id="search-box">
+            <menulist editable="false">
+              <menupopup>
+                <menuitem label="标题"/>
+                <menuitem label="时间"/>
+              </menupopup>
+            </menulist>
+            <textbox id="find-text" flex="1"/>
+            <button id="find-button" label="搜索"/>
+        </hbox> 
+        <hbox>
+            <tree id="v_pageMark" flex="1" hidecolumnpicker="false" seltype="single" class="v_myTree" rows="30" hidehscroll="true" context="v_placesContext">
+  <treecols id="myTree2-treeCols">
+    <treecol id="myTree2-treeCol0" primary="true" flex="2" label="标题"
+             persist="width" ordinal="1"/>
+    <splitter class="tree-splitter" ordinal="2" hidden="true"/>
+    <treecol id="myTree2-treeCol1" flex="1" label="时间"
+             persist="width" ordinal="3" hidden='true'/>
+  </treecols>
+  <treechildren>
+    <!--<treeitem>
+      <treerow link="http://www.baidu.com" onclick="alert('click')">
+        <treecell label="p2_百度URL"/>
+        <treecell label="2011-12-12"/>
+      </treerow>
+    </treeitem>
+    [> Make sure to set container="true" <]
+    <treeitem container="true" open="false">
+        <treerow link="http://www.sogou.com" >
+        <treecell label="游戏"/>
+        <treecell label="2011-12-3"/>
+      </treerow>
+      <treechildren>
+        <treeitem>
+            <treerow link="http://www.tgbus.com">
+              <treecell label="游民星空" />
+              <treecell label="2012-4-3"/>
+          </treerow>
+        </treeitem>
+      </treechildren>
+    </treeitem>-->
+  </treechildren>
+</tree>
+</hbox>
+    <script src="./jquery-1.8.2.js" type="application/x-javascript"/>
+    <script type="application/x-javascript" src="./tree.js"/>
+    <script type="application/x-javascript" src="./tree_web_mark.js"/>
+    <script type="application/x-javascript" src="./util/module.js"/>
+    <script type="application/x-javascript" src="./util/io.js"/>
+    <script type="application/x-javascript" src="./util/json.js"/>
+</page>
