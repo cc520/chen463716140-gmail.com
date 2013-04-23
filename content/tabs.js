@@ -8,6 +8,7 @@
         var title = $self.attr('title');
         $title.attr('value',title);
         $self.addClass('sel').siblings().removeClass('sel');
-        $browser.attr('src',appPath + src + '.xul');
+        //一定刷新
+        $browser.attr('src','').attr('src',appPath + src + '.xul');
     });
 });

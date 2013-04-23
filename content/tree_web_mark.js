@@ -14,13 +14,14 @@ T_Mark.extend(FileFold.prototype,{
     bindEvent : function() {
        var $tree = this.$tree,
             d_tree = $tree.get(0),
-            colIndex = d_tree.columns.getColumnAt(1),
-            $self = this;
+            fidx = d_tree.columns.getColumnAt(0),
+            seldx = d_tree.columns.getColumnAt(1),
+            tCol = top._Vm.get('Collect_Manage');
        $tree.bind('select',function(e) {
           var currentIndex = this.currentIndex;  
-          var value = this.view.getCellText(currentIndex, colIndex);
-          if(value !== 'DEFAULT')
-            $self.showContent(value);
+          var name = this.view.getCellText(currentIndex, fidx);
+          var link = this.view.getCellText(currentIndex, seldx);
+          tCol.loadPage(name,link);
        });
     },
     readData : function(){
@@ -40,7 +41,7 @@ T_Mark.extend(FileFold.prototype,{
    initTree : function(){
         var data = this.readData();
         var root = new FileFold('ROOT',data.body);
-        var xul = root.rootToXUL();
+        var xul = root.rootToPageXUL();
         return xul;
     }
 });

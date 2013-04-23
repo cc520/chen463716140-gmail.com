@@ -3,6 +3,7 @@
 <commandset id="mainCommandSet"> 
     <command id="helloWorldCommand" oncommand="window.openDialog('chrome://V+/content/clock.xul','Clock','chrome,centerscreen,modal');"/>
     <command id="v_save_cmd" oncommand="window.openDialog('chrome://V+/content/save.xul','保存','chrome,centerscreen,modal',window._Vm.get('Collect_Manage'));"/>
+<command id="v_load_cmd" oncommand="window.openDialog('chrome://V+/content/test.xul','保存','chrome,centerscreen,modal',window._Vm.get('Collect_Manage'));"/>
     <command id="v_sidebar_switch" oncommand="showSwitch()"/>
     <command id="v_page_collect:run" oncommand="window._Vm.get('Collect_Manage').run()"/>
     <command id="v_page_collect:quit" oncommand="window._Vm.get('Collect_Manage').quit()"/>
@@ -27,6 +28,7 @@
             <hbox flex="1" pack="end">
               <button label="读取" command="v_nav_bar:read"/>
               <button label="完成" command="v_save_cmd"/>
+              <button label="测试" command="v_load_cmd"/>
               <button label="取消" command="v_nav_bar:close"/>
             </hbox>
         </toolbar>

@@ -29,7 +29,7 @@ FileFold.prototype = {
 
            switch(d.type || 0){
                 case 0 :
-                    f = new File(d.href,d.name);
+                    f = new File(d.href,d.name,d.is_default);
                 break;
                 case 1:
                     f = new FileFold(d.name,d.files);
@@ -65,6 +65,9 @@ FileFold.prototype = {
         xul += filesXUL + '</treeitem>';
         return xul;
     },
+    toPageXUL : function() {
+        return this.toCollectXUL();
+    },
     rootToXUL : function() {
         var $self = this,
             filesXUL = '';
@@ -72,25 +75,26 @@ FileFold.prototype = {
             filesXUL += d.toCollectXUL();
         });
         return filesXUL;
+    },
+    rootToPageXUL : function() {
+        var $self = this,
+            filesXUL = '';
+        $self.eachFile(function(i,d) {
+            filesXUL += d.toPageXUL();
+        });
+        return filesXUL;
     }
 }
-/*
-Root.prototype = new FileFold;
-Root.prototype.toCollectXUL = function() {
-   var filesXUL = '';
-   this.eachFile(function(i,d) {
-       filesXUL += d.toCollectXUL();
-   });
-   return filesXUL;
-};
-*/
 /* 文件 */
-function File(href,name){
+function File(href,name,is_default){
     this.href = href;
     this.name = name;
+    this.is_default = is_default;
 };
 File.prototype = {
     filepng : '../skin/img/treenote.png',
+    v_index_png : '../skin/img/v_index.png',
+    v_no_index_png : '../skin/img/v_no_index.png',
     toCollectXUL : function() {
         var $self = this;
         return '<treeitem>' + 
@@ -101,6 +105,13 @@ File.prototype = {
             '</treeitem>';
     },
     toPageXUL : function() {
-        
+        var $self = this,
+            icon = this.is_default ? this.v_index_png : this.v_no_index_png;
+        return '<treeitem>' + 
+            '<treerow tooltiptext="'+ ($self.name + '\n' + $self.href) +'">' + 
+            '<treecell src="' + icon + '" label="' + $self.name + '"/>' + 
+            '<treecell label="' + $self.href + '"/>' +
+            '</treerow>' +
+            '</treeitem>';
     }
 };

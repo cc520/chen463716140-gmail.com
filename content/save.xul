@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0"?>
 <?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
-<dialog id="donothing" title="Dialog example"
+<dialog id="donothing" title="保存配置"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   buttons="accept,cancel"
   buttonlabelcancel="Cancel"

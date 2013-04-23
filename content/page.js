@@ -223,17 +223,72 @@
                 doc = this.getDoc(),
                 href = doc.location.href,
                 css = null, 
+                pc = null,
+                idx = 0;
+            //存在预览对象
+            var obj = top._previewObj;
+            if(obj){
+                dump('ag');
+                var name = obj.name,
+                    css = obj.css,
+                    link = obj.link;
+                this.inCss(doc,css);
+                document.getElementById('urlbar').value = name + ':' + link;
+            }else{
+                dump('three');
+                //if(doc._vie) return;
+                for(var i=0,len=pconfig.length;i<len;i++){
+                    pc = pconfig[i];
+                    if(pc['href'] === href && pc['is_default']){
+                        css = pc['cs'];
+                        this.inCss(doc,css);
+                        document.getElementById('urlbar').value = pc['name']  + ':' + href;
+                        doc._v_name = pc['name'];
+                    }
+                }
+                //doc._vie = true;
+            }
+            return this;
+        },
+        applyLoc : function() {
+           var doc = this.getDoc(),
+                href = doc.location.href,
+                name = doc._v_name || '';
+           if(doc._v_name){
+               document.getElementById('urlbar').value = name + ':' + href;
+           }
+           return this;
+        },
+        //预览页面
+        loadPage : function(name,link) {
+            var win = top;
+            win._previewObj = {
+                name : name,
+                link : link,
+                css :  this.getCss(name,link)
+            };
+
+            gBrowser.selectedTab = gBrowser.addTab(link);
+            var newBrowserTab = gBrowser.getBrowserForTab(gBrowser.selectedTab);
+            newBrowserTab.addEventListener('load',function() {
+                newBrowserTab.contentDocument._v_name = name;
+                top._previewObj = null;
+                dump(true);
+            },true);
+
+        },
+        getCss : function(name,href) {
+            var pcs = this.pageConfig,
+                css = null,
                 pc = null;
-            if(doc._vie) return;
-            for(var i=0,len=pconfig.length;i<len;i++){
-                pc = pconfig[i];
-                if(pc['href'] === href){
+            for(var i=0,len=pcs.length;i<len;i++){
+                pc = pcs[i];
+                if(pc['href'] === href && pc['name'] === name){
                     css = pc['cs'];
-                    this.inCss(doc,css);
+                    break;
                 }
             }
-            doc._vie = true;
-            return this;
+            return css;
         },
         inCss : function(doc,css) {
            var selector = '',
@@ -264,27 +319,30 @@
         /* 控制tabs动向，以及页面刷新 */
         init : function() {
           var $self = this;
+          window._previewObj = null;
           this.extend('IO','SimpleOper');
           this.read();
           var container = gBrowser.tabContainer;
           //标签属性变化触发事件
-          container.addEventListener("TabAttrModified", function() {
-            $self.apply();
+          container.addEventListener("TabAttrModified", function(e) {
+            $self.applyLoc();
             $self.onPageLoad();
           }, false);
 
-          /*var myExtension = {
-            init : function() {
+        window.addEventListener("load", function(){myExtension.init()}, false);
+        //打开浏览器时执行 myExtension.init()
+        var myExtension = {
+            init: function() {
                 var appcontent = document.getElementById("appcontent");
                 //appcontent是所有页面父节点的ID
                 if(appcontent)
-                    appcontent.addEventListener("DOMContentLoaded", function() {
-                        $self.apply();
-                    }, true);
-                    //DOMContentLoaded事件触发myExtension.onPageLoad               
-                } 
-          };
-          window.addEventListener("load", function(){myExtension.init()}, false);*/
+                    appcontent.addEventListener("DOMContentLoaded", this.onPageLoad, true);
+                    //DOMContentLoaded事件触发myExtension.onPageLoad
+            },
+            onPageLoad: function(e) {
+                $self.apply();
+            }
+        }
           return this;
         },
         run : function() {
@@ -368,10 +426,12 @@
             //alert(o);
             m_IO.save(o,filename);
             //alert('保存了');
+            this.refresh();
         },
-        //合并存档
-        union : function(org,nc) {
-            return o;
+        //刷新列表
+        refresh : function() {
+           var $icon = $('.icon.sel');
+           $icon.trigger('click');
         },
         read : function() {
            var filename = 'collect_save.txt',

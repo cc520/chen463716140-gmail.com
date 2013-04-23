@@ -26,7 +26,7 @@
             <menulist editable="false">
               <menupopup>
                 <menuitem label="标题"/>
-                <menuitem label="时间"/>
+                <menuitem label="地址"/>
               </menupopup>
             </menulist>
             <textbox id="find-text" flex="1"/>

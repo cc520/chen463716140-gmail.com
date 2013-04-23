@@ -33,12 +33,33 @@ T_Mark.extend(FileFold.prototype,{
                 'name',
                 'href'
             ],
-            body : obj
+            body : [
+                {
+                    'name':'游戏',
+                    'type': 1,
+                    'files' : [
+                    {
+                        'name' : '游民星空',
+                        'href' : 'http://www.sogou.com'
+                    },
+                    {
+                        'name' : '游戏王',
+                        'href' : 'http://www.baidu.com'
+                    }
+                    ] 
+                },
+                {
+                    'name' : '百度',
+                    'href' : 'http://www.baidu.com',
+                    'type' : 0
+                }
+            ]
         };
         return data;
     },
    initTree : function(){
         var data = this.readData();
+
         var root = new FileFold('ROOT',data.body);
         var xul = root.rootToXUL();
         return xul;
