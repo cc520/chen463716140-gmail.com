@@ -3,68 +3,74 @@
 <page id="v_htmlMark" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
     <popupset>
         <menupopup id="v_webContext"> 
-            <menuitem label="浏览" command="v_webCmd:query"/>
+            <menuitem label="新建文件夹" command="v_webCmd:addNewFold" disabled="true"/>
             <menuseparator/>
-            <menuitem label="取消应用" command="v_webCmd:cancelApp"/>
-            <menuitem label="应用" command="v_webCmd:App"/>
+            <menuitem label="浏览" command="v_webCmd:query" disabled="true"/>
+            <menuitem label="删除" command="v_webCmd:delete" disabled="true"/>
+            <menuitem label="取消应用" command="v_webCmd:cancelApp" id="v_cancelApp" hidden='true'/>
+            <menuitem label="应用" command="v_webCmd:App" id="v_app" hidden='true'/>
             <menuseparator/>
-            <menuitem label="删除" command="v_webCmd:delete"/>
+            <menuitem label="属性" command="v_webCmd:Config" disabled="true"/>
         </menupopup>
     </popupset>
     <commandset>
-        <command id="v_webCmd:query" oncommand=""/>
-        <command id="v_webCmd:cancelApp" oncommand=""/>
-        <command id="v_webCmd:App" oncommand=""/>
-        <command id="v_webCmd:delete" oncommand=""/>
+        <command id="v_webCmd:addNewFold" oncommand="window._wPop.addNewFold()"/>
+        <command id="v_webCmd:query" oncommand="window._wPop.query()"/>
+        <command id="v_webCmd:cancelApp" oncommand="window._wPop.cancelApp()"/>
+        <command id="v_webCmd:App" oncommand="window._wPop.app()"/>
+        <command id="v_webCmd:delete" oncommand="window._wPop.del()"/>
+        <command id="v_webCmd:Config" oncommand="window._wPop.config()"/>
     </commandset>
-<hbox id="search-box">
-            <menulist editable="false">
-              <menupopup>
-                <menuitem label="标题"/>
-                <menuitem label="地址"/>
-              </menupopup>
-            </menulist>
-            <textbox id="find-text" flex="1"/>
-            <button id="find-button" label="搜索"/>
-        </hbox> 
-        <hbox>
-            <tree id="v_pageMark" flex="1" hidecolumnpicker="false" seltype="single" class="v_myTree" rows="30" hidehscroll="true" context="v_webContext">
-  <treecols id="myTree2-treeCols">
-    <treecol id="myTree2-treeCol0" primary="true" flex="2" label="标题"
-             persist="width" ordinal="1"/>
-    <splitter class="tree-splitter" ordinal="2" hidden="true"/>
-    <treecol id="myTree2-treeCol1" flex="1" label="地址"
-             persist="width" ordinal="3" hidden='true'/>
-  </treecols>
-  <treechildren>
-    <!--<treeitem>
-      <treerow link="http://www.baidu.com" onclick="alert('click')">
-        <treecell label="p2_百度URL"/>
-        <treecell label="2011-12-12"/>
-      </treerow>
-    </treeitem>
-    [> Make sure to set container="true" <]
-    <treeitem container="true" open="false">
-        <treerow link="http://www.sogou.com" >
-        <treecell label="游戏"/>
-        <treecell label="2011-12-3"/>
-      </treerow>
-      <treechildren>
-        <treeitem>
-            <treerow link="http://www.tgbus.com">
-              <treecell label="游民星空" />
-              <treecell label="2012-4-3"/>
+    <hbox id="search-box">
+        <menulist editable="false">
+          <menupopup>
+            <menuitem label="标题"/>
+            <menuitem label="地址"/>
+          </menupopup>
+        </menulist>
+        <textbox id="find-text" flex="1"/>
+        <button id="find-button" label="搜索"/>
+    </hbox> 
+    <hbox flex="1" id="v_pageMark_container">
+    <tree id="v_pageMark" flex="1" hidecolumnpicker="false" seltype="single" class="v_myTree" hidehscroll="true" context="v_webContext">
+      <treecols id="myTree2-treeCols">
+        <treecol id="myTree2-treeCol0" primary="true" flex="2" label="标题"
+                 persist="width" ordinal="1"/>
+        <splitter class="tree-splitter" ordinal="2" hidden="true"/>
+        <treecol id="myTree2-treeCol1" flex="1" label="地址" persist="width" ordinal="3" hidden='true'/>
+        <splitter class="tree-splitter" ordinal="2" hidden="true"/>
+        <treecol id="myTree2-treeCol1" flex="1" label="隐藏" persist="width" ordinal="3" hidden='true'/>
+      </treecols>
+      <treechildren flex="1">
+        <!--<treeitem>
+          <treerow link="http://www.baidu.com" onclick="alert('click')">
+            <treecell label="p2_百度URL"/>
+            <treecell label="2011-12-12"/>
           </treerow>
         </treeitem>
+        [> Make sure to set container="true" <]
+        <treeitem container="true" open="false">
+            <treerow link="http://www.sogou.com" >
+            <treecell label="游戏"/>
+            <treecell label="2011-12-3"/>
+          </treerow>
+          <treechildren>
+            <treeitem>
+                <treerow link="http://www.tgbus.com">
+                  <treecell label="游民星空" />
+                  <treecell label="2012-4-3"/>
+              </treerow>
+            </treeitem>
+          </treechildren>
+        </treeitem>-->
       </treechildren>
-    </treeitem>-->
-  </treechildren>
-</tree>
-</hbox>
+    </tree>
+    </hbox>
     <script src="./jquery-1.8.2.js" type="application/x-javascript"/>
     <script type="application/x-javascript" src="./tree.js"/>
     <script type="application/x-javascript" src="./tree_web_mark.js"/>
     <script type="application/x-javascript" src="./util/module.js"/>
     <script type="application/x-javascript" src="./util/io.js"/>
+    <script type="application/x-javascript" src="./js/m_config.js"/>
     <script type="application/x-javascript" src="./util/json.js"/>
 </page>

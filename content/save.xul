@@ -3,8 +3,8 @@
 <dialog id="donothing" title="保存配置"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   buttons="accept,cancel"
-  buttonlabelcancel="Cancel"
-  buttonlabelaccept="Save"
+  buttonlabelcancel="取消"
+  buttonlabelaccept="确定"
   ondialogaccept="return doOK();"
   ondialogcancel="return doCancel();">
   <!--<dialogheader title="网页编辑" description=""/>-->
@@ -24,6 +24,6 @@
   </script>
     <label value="名称:"/>
     <textbox id="v_save_name" value="cc"/>
-    <checkbox label="是否设置为此页面为默认页面" id="v_is_default" checked="true"/>
+    <checkbox label="是否将设置应用于此网页" id="v_is_default" checked="true"/>
 </dialog>
 

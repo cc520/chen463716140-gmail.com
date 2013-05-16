@@ -66,7 +66,8 @@
            V_D : 100,
            V_F : 102,
            V_P : 112,
-           V_T : 116
+           V_T : 116,
+           V_H : 104
         },
         remove : function() {
             this.css({
@@ -84,13 +85,14 @@
         },
         //摘录选择区域
         filter : function() {
-           var $ele = this.$ele;
-           var $prs = $ele.parents();
-           $prs.each(function(i,d) {
-               $prs.eq(i).siblings(':not(head)').remove();
-           });
-           $ele.siblings().remove();
-           return this;
+            this.$ele.parents().andSelf()
+                .siblings(':not(head)').hide();
+            return this;
+        },
+        cut : function() {
+            var $prs = this.$ele.parents(),
+                len = $prs.length;
+            $prs.eq(len-1).append(this.$ele);
         },
         apply : function(oper) {
             var $self = this,
@@ -105,6 +107,9 @@
                 break;
                 case KEYS.V_T : 
                     $self.filter();
+                break;
+                case KEYS.V_H : 
+                    $self.cut();
                 break;
                 default:
                 break;

@@ -1,0 +1,81 @@
+﻿<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<dialog id="v_web_config" title="属性"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  buttons="accept,cancel"
+  buttonlabelcancel="取消"
+  buttonlabelaccept="确定"
+  ondialogaccept="return doOK();"
+  ondialogcancel="return doCancel();" onload = "init()">
+  <!--<dialogheader title="网页编辑" description=""/>-->
+  <script type="application/x-javascript">
+
+      var Config = {
+        save : function(name,url,is_default){
+            var obj = window.arguments[0],
+                pc = obj.pc,
+                idx = obj.idx,
+                m_Coll = obj.m_Coll;
+            pc.update(idx,{
+                name : name, 
+                href : url,
+                is_default : is_default,
+            }); 
+            pc.save();
+            m_Coll.refresh();
+          return this;
+        },
+        getConfig : function(){
+            var obj = window.arguments[0],
+                pc = obj.pc,
+                idx = obj.idx,
+                cg = pc.get(idx);
+           return cg;
+        },
+        _set : function(name,url,is_default){
+            this.find('v_save_name').value = name;
+            this.find('v_app_url').value = url;
+            this.find('v_is_default').checked = is_default;
+            return this;
+        },
+        _get : function(){
+          var name = this.find('v_save_name').value,
+          app_url = this.find('v_app_url').value,
+          is_default = this.find('v_is_default').checked;
+          return {
+            name : name,
+            url : app_url,
+            is_default : is_default
+          };
+        },
+        find : function(id){
+            return document.getElementById(id);
+        }
+    };
+    function init(){
+       var cg = Config.getConfig();
+       Config._set(cg.name,cg.href,cg.is_default);
+    };
+    function doCancel(){
+        return;
+    };
+    function doOK(){
+        var cg = Config._get(),
+            name = cg.name,
+            app_url = cg.url,
+            is_default = cg.is_default;
+      if(!name.length){
+        alert('名称不能为空！');
+        return;
+      };
+      Config.save(name,app_url,is_default);
+      return true;
+    }
+  </script>
+  <label value="名称："/>
+  <textbox id="v_save_name"/>
+  <label value="网址："/>
+  <textbox id="v_app_url"/>
+  <checkbox label="是否将设置应用于此网页" id="v_is_default"/>
+</dialog>
+

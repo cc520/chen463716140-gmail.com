@@ -54,7 +54,7 @@ FileFold.prototype = {
        var $self = this,
            xul = '<treeitem container="true" open="false">' +
            '<treerow>' + 
-              '<treecell src="' + $self.foldpng + '" label="' + $self.name + '"/>' + 
+              '<treecell src="' + $self.foldpng + '" label="' + $self.name + '" />' + 
               '<treecell label="" />' + 
             '</treerow>',
             filesXUL = '';
@@ -111,6 +111,7 @@ File.prototype = {
             '<treerow tooltiptext="'+ ($self.name + '\n' + $self.href) +'">' + 
             '<treecell src="' + icon + '" label="' + $self.name + '"/>' + 
             '<treecell label="' + $self.href + '"/>' +
+            '<treecell label="' + $self.is_default + '"/>' +
             '</treerow>' +
             '</treeitem>';
     }

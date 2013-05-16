@@ -5,8 +5,7 @@
 }
 #search-box button{min-width:auto;width:50px;}
 /* 树的样式 */
-.v_myTree treechildren::-moz-tree-row(selected) { background-color: #FFFFAA; }
-/*
-.v_myTree treechildren::-moz-tree-row { background:url('./img/treenote.png'); }
-*/
-.v_myTree treechildren::-moz-tree-cell-text(selected) { color: #000000; }
+.v_myTree treechildren::-moz-tree-row(selected) { background-color: #ffa; }
+.v_myTree treechildren::-moz-tree-cell-text { color: #000;cursor:pointer; padding-left:5px}
+.v_myTree treechildren::-moz-tree-cell-text(selected) { color: #000; }
+.v_myTree treechildren::-moz-tree-cell-text(hover) {text-decoration:underline;} 

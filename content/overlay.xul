@@ -39,6 +39,7 @@
 <script type="application/x-javascript" src="./util/io.js" />
 <script type="application/x-javascript" src='./switch.js' />
 <script type="application/x-javascript" src='./EleOper.js' />
+<script type="application/x-javascript" src="./js/m_config.js" />
 <script type="application/x-javascript" src='./page.js' />
 <script type="application/x-javascript" src="./init.js" />
 </overlay>  

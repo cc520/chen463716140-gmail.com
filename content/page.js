@@ -191,7 +191,7 @@
         _N : 0,                                             //标记选择实例化数量
         cols : [],
         _mods : {},
-        pageConfig : [],
+        Config : null,
         /* 模块 */
         extend : function() {
             var args = arguments;
@@ -219,7 +219,7 @@
             }
         },
         apply: function() {
-            var pconfig = this.pageConfig,
+            var pconfig = this.getConfig().read(),
                 doc = this.getDoc(),
                 href = doc.location.href,
                 css = null, 
@@ -228,22 +228,21 @@
             //存在预览对象
             var obj = top._previewObj;
             if(obj){
-                dump('ag');
                 var name = obj.name,
                     css = obj.css,
                     link = obj.link;
                 this.inCss(doc,css);
                 document.getElementById('urlbar').value = name + ':' + link;
             }else{
-                dump('three');
+                dump('three\n');
                 //if(doc._vie) return;
                 for(var i=0,len=pconfig.length;i<len;i++){
                     pc = pconfig[i];
                     if(pc['href'] === href && pc['is_default']){
                         css = pc['cs'];
                         this.inCss(doc,css);
-                        document.getElementById('urlbar').value = pc['name']  + ':' + href;
-                        doc._v_name = pc['name'];
+                        //document.getElementById('urlbar').value = pc['name']  + ':' + href;
+                        delete doc._v_name;
                     }
                 }
                 //doc._vie = true;
@@ -255,6 +254,7 @@
                 href = doc.location.href,
                 name = doc._v_name || '';
            if(doc._v_name){
+               //alert(name);
                document.getElementById('urlbar').value = name + ':' + href;
            }
            return this;
@@ -275,10 +275,9 @@
                 top._previewObj = null;
                 dump(true);
             },true);
-
         },
         getCss : function(name,href) {
-            var pcs = this.pageConfig,
+            var pcs = this.getConfig().read(),
                 css = null,
                 pc = null;
             for(var i=0,len=pcs.length;i<len;i++){
@@ -320,15 +319,15 @@
         init : function() {
           var $self = this;
           window._previewObj = null;
-          this.extend('IO','SimpleOper');
+          this.extend('IO','SimpleOper','Config');
           this.read();
+
           var container = gBrowser.tabContainer;
           //标签属性变化触发事件
           container.addEventListener("TabAttrModified", function(e) {
             $self.applyLoc();
             $self.onPageLoad();
           }, false);
-
         window.addEventListener("load", function(){myExtension.init()}, false);
         //打开浏览器时执行 myExtension.init()
         var myExtension = {
@@ -401,15 +400,29 @@
             var v_nav_bar = document.getElementById('v_nav_bar');
             v_nav_bar.setAttribute('hidden',false);
         },
+        getConfig : function() {
+           return this.Config;   
+        },
         // IO 操作 
         save : function(f_name,is_default) {
+            var pc = this.getConfig(),
+                o = null;
+            //如果存在保存的名字则添加，否则就是单纯的刷新，可能是删除修改等等
+            if(f_name){
+                o = this._formConfig(f_name,is_default);
+                pc.add(o);
+            }
+            pc.save();
+            this.refresh();
+        },
+        //形成配置信息对象
+        _formConfig : function(f_name,is_default) {
             var context = this.getDoc(),
                 idx = context._v_i,
                 col = null,
                 cssText = null,
                 href = '',
-                o = null,
-                pc = this.pageConfig;
+                o = null;
             col = this.find(idx);
             cssText = col.getOps();     
             href = context.location.href;
@@ -419,14 +432,7 @@
                 'href' : href,
                 'cs' : cssText
             };
-            this.pageConfig.push(o);
-            var filename = 'collect_save.txt',
-                m_IO = this.getMod('IO');
-            o = $.toJSON(pc);
-            //alert(o);
-            m_IO.save(o,filename);
-            //alert('保存了');
-            this.refresh();
+            return o;
         },
         //刷新列表
         refresh : function() {
@@ -434,17 +440,9 @@
            $icon.trigger('click');
         },
         read : function() {
-           var filename = 'collect_save.txt',
-                m_IO = this.getMod('IO');
-           var pc = m_IO.read(filename);
-           //alert('读取：\n' + pc);
-           pc = $.parseJSON(pc);
-           if(!pc || typeof pc != 'object'){
-                pc = [];
-           }else if(!$.isArray(pc)){
-                pc = [pc];
-           }
-           this.pageConfig = pc;
+          var m_Config = this.getMod('Config');
+          this.Config = new m_Config();
+          return this;
         }
     };
     Collect_Manage.init();

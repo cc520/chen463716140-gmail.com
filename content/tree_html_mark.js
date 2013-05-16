@@ -35,6 +35,50 @@ T_Mark.extend(FileFold.prototype,{
             ],
             body : [
                 {
+                    'name' : '游民星空',
+                    'href' : 'http://www.sogou.com'
+                },
+                {
+                    'name' : '游戏王',
+                    'href' : 'http://www.baidu.com'
+                },
+                {
+                    'name' : '百度',
+                    'href' : 'http://www.baidu.com',
+                }
+            ]
+        };
+        return data;
+    },
+    //添加新摘录
+    add : function() {
+        
+    },
+    //删除摘录
+    remove : function() {
+        
+    },
+    //浏览
+    query : function() {
+        
+    },
+    //保存配置
+    save : function() {
+        
+    },
+   initTree : function(){
+        var data = this.readData();
+        var root = new FileFold('ROOT',data.body);
+        var xul = root.rootToXUL();
+        return xul;
+    }
+});
+$(window).bind('load',function() {
+   new T_Mark('#v_htmlMark','html_save.txt');
+})
+/*
+            body : [
+                {
                     'name':'游戏',
                     'type': 1,
                     'files' : [
@@ -54,17 +98,5 @@ T_Mark.extend(FileFold.prototype,{
                     'type' : 0
                 }
             ]
-        };
-        return data;
-    },
-   initTree : function(){
-        var data = this.readData();
 
-        var root = new FileFold('ROOT',data.body);
-        var xul = root.rootToXUL();
-        return xul;
-    }
-});
-$(window).bind('load',function() {
-   new T_Mark('#v_htmlMark','collect_save.txt');
-})
+            */
